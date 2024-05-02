@@ -1,4 +1,4 @@
-# simulador_app_vue_js
+# Simulador Web
 
 ## Project setup
 ```
