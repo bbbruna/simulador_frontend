@@ -20,5 +20,8 @@ npm run build
 npm run lint
 ```
 
+Alterar o código do SimuladorController.php para o fornecido no [SimuladorController.txt](SimuladorController.txt).
+
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
