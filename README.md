@@ -31,10 +31,6 @@ Para alterar o código do `SimuladorController.php` para o fornecido no arquivo 
 3. Substitua o conteúdo atual do `SimuladorController.php` pelo conteúdo do arquivo `SimuladorController.txt`, não se esquecendo que as extensões são diferentes.
 4. Salve as alterações.
 
-## Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
