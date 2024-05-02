@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     updateSelectedInstitutions() {
-      console.log("Instituições selecionadas:", this.selectedInstitutions);
       this.$emit('update:selectedInstitutions', this.selectedInstitutions);
     }
   }

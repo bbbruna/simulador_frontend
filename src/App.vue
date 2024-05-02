@@ -7,7 +7,7 @@
       </div>
       <div class="row mb-2">
         <div class="col-md-6">
-          <InstitutionSelect v-model="selectedInstitutions" @update:selectedInstitutions="updateSelectedInstitutions" />
+          <InstitutionSelect v:selectedInstitutions="selectedInstitutions" @update:selectedInstitutions="updateSelectedInstitutions" />
         </div>
         <div class="col-md-6">
           <AgreementSelect v-model="selectedAgreements" @selected-agreements="handleSelectedAgreements"/>
@@ -91,7 +91,6 @@ export default {
       this.selectedAgreements = selectedAgreements;
     },
     updateSelectedInstitutions(selectedInstitutions) {
-      console.log('Instituições selecionadas:', selectedInstitutions); 
       this.selectedInstitutions = selectedInstitutions;
     },
     handleSimulationsReceived(simulations) {

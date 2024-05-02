@@ -18,7 +18,7 @@ export default {
       type: Array,
       default: () => []
     },
-    institutions: {
+    selectedInstitutions: {
       type: Array,
       default: () => []
     },
@@ -28,7 +28,6 @@ export default {
   },
   methods: {
       async simulateLoan() {
-
         if (!this.loanAmount) {
           console.error('O valor do empréstimo não pode ser vazio.');
           return;
@@ -37,12 +36,11 @@ export default {
         try {
           const loan = new LoanModel(
             this.loanAmount,
-            this.institutions,
-            this.selectedAgreements,
+            this.$props.selectedInstitutions,
+            this.$props.selectedAgreements,
             this.selectedInstallments,
           );
 
-          console.log("LOAN ", loan);
           const simulations = await sendSimulation(loan);
           this.simulations = simulations;
 

@@ -26,9 +26,6 @@ export async function sendSimulation(payload) {
     });
     
     const simulationData = response.data;
-    console.log('Resposta da API:', response.data);
-    console.log('Simulação:', formattedPayload);
-    console.log('Payload:', response.data);
   
     return parseToJson(simulationData, payload); 
   } catch (error) {
@@ -65,6 +62,9 @@ function parseToJson(responseJson, loan) {
     return [];
   }
 
+  const selectedAgreements = loan.selectedAgreements || [];
+  const selectedInstitutions = loan.selectedInstitutions || [];
+
   try {
     for (const institutionKey in responseJson) {
       const institutionData = responseJson[institutionKey];
@@ -75,16 +75,24 @@ function parseToJson(responseJson, loan) {
       }
 
       for (const element of institutionData) {
-        const simulation = {
-          loanAmount: loan.loanAmount,
-          institutions: institutionKey,
-          tax: element.taxa,
-          agreement: element.convenio,
-          installmentsValue: element.valor_parcela,
-          installments: element.parcelas,
-        };
+        // Verificar se o convênio está selecionado (se estiver vazio ou o convênio está na lista)
+        const isAgreementSelected = selectedAgreements.length === 0 || selectedAgreements.includes(element.convenio);
+        // Verificar se a instituição está selecionada (se estiver vazio ou a instituição está na lista)
+        const isInstitutionSelected = selectedInstitutions.length === 0 || selectedInstitutions.includes(element.instituicao);
 
-        auxSimulations.push(simulation);
+        // Se o convênio e a instituição estiverem selecionados, adicionar a simulação
+        if (isAgreementSelected && isInstitutionSelected) {
+          const simulation = {
+            loanAmount: loan.loanAmount,
+            institutions: element.instituicao,
+            tax: element.taxa,
+            agreement: element.convenio,
+            installmentsValue: element.valor_parcela,
+            installments: element.parcelas,
+          };
+
+          auxSimulations.push(simulation);
+        }
       }
     }
 
